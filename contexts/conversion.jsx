@@ -1,12 +1,28 @@
 import convert from 'convert-units';
-import { createContext, useContext, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const ConversionContext = createContext();
 
 export const ConversionProvider = ({ children }) => {
-  const unitPossibilities = useMemo(() => convert().possibilities('temperature'), []);
-  const [conversionFrom, setConversionFrom] = useState({ value: 0, unit: unitPossibilities[0] });
+  const {
+    query: { unit = 'mass' },
+  } = useRouter();
+  const [unitPossibilities, setUnitPossibilities] = useState(convert().possibilities(unit));
+  const [conversionFrom, setConversionFrom] = useState({ value: 10, unit: unitPossibilities[0] });
   const [conversionTo, setConversionTo] = useState({ value: 0, unit: unitPossibilities[1] });
+
+  useEffect(() => {
+    const newUnitPossibilities = convert().possibilities(unit);
+    const [conversionFromUnit, conversionToUnit] = newUnitPossibilities;
+    const convertedValue = convert(conversionFrom.value)
+      .from(conversionFromUnit)
+      .to(conversionToUnit);
+
+    setUnitPossibilities(newUnitPossibilities);
+    setConversionFrom((prev) => ({ ...prev, unit: conversionFromUnit }));
+    setConversionTo({ value: convertedValue, unit: conversionToUnit });
+  }, [unit]);
 
   const handleConversionFromChange = ({ target: { name, value } }) => {
     const convertValue = name === 'value' ? value : conversionFrom.value;

@@ -19,12 +19,12 @@ const Header = () => {
           <div className="md:flex">
             <div>
               <h1 className="mt-5 md:mt-20 text-center md:text-left text-[30px] tracking-tight leading-8 font-quicksand font-semibold text-primary-900">
-                Convert kilograms into <br />
-                pounds quickly.
+                Fast conversion from <br />
+                one unit to another
               </h1>
               <p className="mt-4 text-center md:text-left text-[15px] text-primary-900">
-                Easily enter your kilogram weight and instantly <br />
-                get the result in pounds.
+                Instantly get the result in another unit <br />
+                by entering your unit value.
               </p>
             </div>
 

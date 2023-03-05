@@ -9,7 +9,7 @@ const Logo = () => {
       href="/"
     >
       <ConverterIcon />
-      <strong className="ml-1 uppercase">Mass converter</strong>
+      <strong className="ml-1 uppercase whitespace-nowrap">Unit converter</strong>
     </Link>
   );
 };
