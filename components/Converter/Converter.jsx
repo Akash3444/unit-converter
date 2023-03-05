@@ -1,3 +1,4 @@
+import convert from 'convert-units';
 import React, { useState } from 'react';
 import { useConversion } from '../../contexts/conversion';
 import useCopyToClipboard from '../../hooks/useCopyToClipboard';
@@ -9,6 +10,12 @@ const Converter = () => {
   const { conversionFrom, conversionTo, handleConversionFromChange, handleConversionToChange } =
     useConversion();
   const { copy } = useCopyToClipboard();
+  const { singular: fromUnitSingular, plural: fromUnitPlural } = convert().describe(
+    conversionFrom.unit
+  );
+  const { singular: toUnitSingular, plural: toUnitPlural } = convert().describe(conversionTo.unit);
+  const conversionFromUnitText = +conversionFrom.value === 1 ? fromUnitSingular : fromUnitPlural;
+  const conversionToUnitText = +conversionTo.value === 1 ? toUnitSingular : toUnitPlural;
 
   const handleCopyResult = () => {
     if (!isCopied && copy(conversionTo.value)) {
@@ -29,10 +36,10 @@ const Converter = () => {
 
       <div className="p-6">
         <p className="text-gray-400">
-          {conversionFrom.value || 0} ({conversionFrom.unit}) kilograms is equal to
+          {conversionFrom.value || 0} ({conversionFrom.unit}) {conversionFromUnitText} is equal to
         </p>
         <span className="text-xl dark:text-dark-100">
-          {conversionTo.value} ({conversionTo.unit}) pounds
+          {conversionTo.value} ({conversionTo.unit}) {conversionToUnitText}
         </span>
 
         <div className="mt-6 w-full max-w-full flex items-start justify-between">

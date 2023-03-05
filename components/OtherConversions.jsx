@@ -3,7 +3,7 @@ import React from 'react';
 import { useConversion } from '../contexts/conversion';
 
 const OtherConversions = () => {
-  const { conversionFrom, massPossibilities } = useConversion();
+  const { conversionFrom, unitPossibilities } = useConversion();
   const { singular: fromUnitSingular, plural: fromUnitPlural } = convert().describe(
     conversionFrom.unit
   );
@@ -14,7 +14,7 @@ const OtherConversions = () => {
       <h2 className="mb-4 font-roboto-mono text-gray-400 text-sm">Also Converts To</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {massPossibilities.map(
+        {unitPossibilities.map(
           (unit) =>
             unit !== conversionFrom.unit && (
               <div key={unit} className="border dark:border-dark-800 rounded text-center p-4">

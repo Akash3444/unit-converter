@@ -3,7 +3,7 @@ import React from 'react';
 import { useConversion } from '../../contexts/conversion';
 
 const ConversionInput = ({ conversionFrom, conversionTo, onChange }) => {
-  const { massPossibilities } = useConversion();
+  const { unitPossibilities } = useConversion();
 
   return (
     <div>
@@ -22,7 +22,7 @@ const ConversionInput = ({ conversionFrom, conversionTo, onChange }) => {
           onChange={onChange}
           className="absolute inset-y-0 right-1.5 my-auto border border-gray-300 h-8 rounded-sm text-xs focus:outline-none"
         >
-          {massPossibilities.map((unit) => (
+          {unitPossibilities.map((unit) => (
             <option key={unit} value={unit} disabled={unit === conversionTo.unit}>
               {unit}
             </option>

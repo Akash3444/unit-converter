@@ -4,10 +4,9 @@ import { createContext, useContext, useMemo, useState } from 'react';
 const ConversionContext = createContext();
 
 export const ConversionProvider = ({ children }) => {
-  const [conversionFrom, setConversionFrom] = useState({ value: 0, unit: 'kg' });
-  const [conversionTo, setConversionTo] = useState({ value: 0, unit: 'lb' });
-
-  const massPossibilities = useMemo(() => convert().possibilities('mass'), []);
+  const unitPossibilities = useMemo(() => convert().possibilities('temperature'), []);
+  const [conversionFrom, setConversionFrom] = useState({ value: 0, unit: unitPossibilities[0] });
+  const [conversionTo, setConversionTo] = useState({ value: 0, unit: unitPossibilities[1] });
 
   const handleConversionFromChange = ({ target: { name, value } }) => {
     const convertValue = name === 'value' ? value : conversionFrom.value;
@@ -32,7 +31,7 @@ export const ConversionProvider = ({ children }) => {
       value={{
         conversionFrom,
         conversionTo,
-        massPossibilities,
+        unitPossibilities,
         handleConversionFromChange,
         handleConversionToChange,
       }}
