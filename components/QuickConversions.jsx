@@ -8,7 +8,7 @@ const QuickConversions = () => {
   const { conversionFrom, conversionTo } = useConversion();
 
   return (
-    <aside className="">
+    <aside className="basis-96">
       <div className="w-full mt-3 p-2 lg:p-0">
         <h2 className="text-center font-quicksand text-[22px] font-semibold text-primary-900 dark:text-dark-300">
           Quick Conversions
@@ -34,7 +34,7 @@ const QuickConversions = () => {
                   {value} {conversionFrom.unit}
                 </td>
                 <td>
-                  {convert(value).from(conversionFrom.unit).to(conversionTo.unit)}{' '}
+                  {convert(value).from(conversionFrom.unit).to(conversionTo.unit).toFixed(3)}{' '}
                   {conversionTo.unit}
                 </td>
               </tr>

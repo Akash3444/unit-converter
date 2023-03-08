@@ -27,7 +27,7 @@ const Converter = () => {
   };
 
   return (
-    <div className="mt-6 max-w-md mx-auto md:ml-auto md:mr-0 bg-white dark:bg-dark-900 border-t-4 border-primary-700 rounded">
+    <div className="mt-6 max-w-lg mx-auto md:ml-auto md:mr-0 bg-white dark:bg-dark-900 border-t-4 border-primary-700 rounded">
       <div className="border-b dark:border-b-dark-800 border-gray-300">
         <p className="p-6 text-gray-400 text-center text-[15px]">
           You can also press the arrow so you can select other weight units that you could convert.
@@ -42,7 +42,7 @@ const Converter = () => {
           {conversionTo.value} ({conversionTo.unit}) {conversionToUnitText}
         </span>
 
-        <div className="mt-6 w-full max-w-full flex items-start justify-between">
+        <div className="mt-6 w-full max-w-full gap-3 flex items-start justify-between">
           <ConversionInput
             conversionFrom={conversionFrom}
             conversionTo={conversionTo}
@@ -64,7 +64,7 @@ const Converter = () => {
 
         <button
           onClick={handleCopyResult}
-          className="block max-w-max mx-auto mt-4 text-center uppercase text-[13px] text-primary-500"
+          className="block max-w-max mx-auto mt-8 text-center uppercase text-[13px] text-primary-500"
         >
           {isCopied ? 'Copied!' : 'Copy result'}
         </button>

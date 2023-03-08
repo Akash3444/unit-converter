@@ -21,25 +21,34 @@ export const ConversionProvider = ({ children }) => {
 
     setUnitPossibilities(newUnitPossibilities);
     setConversionFrom((prev) => ({ ...prev, unit: conversionFromUnit }));
-    setConversionTo({ value: convertedValue, unit: conversionToUnit });
+    setConversionTo({
+      value: +convertedValue === 0 ? 0 : convertedValue.toFixed(3),
+      unit: conversionToUnit,
+    });
   }, [unit]);
 
   const handleConversionFromChange = ({ target: { name, value } }) => {
     const convertValue = name === 'value' ? value : conversionFrom.value;
     const from = name === 'value' ? conversionFrom.unit : value;
-    const convertedValue = convert(convertValue).from(from).to(conversionTo.unit).toFixed(3);
+    const convertedValue = convert(convertValue).from(from).to(conversionTo.unit);
 
     setConversionFrom((prev) => ({ ...prev, [name]: value }));
-    setConversionTo((prev) => ({ ...prev, value: convertedValue }));
+    setConversionTo((prev) => ({
+      ...prev,
+      value: +convertedValue === 0 ? 0 : convertedValue.toFixed(3),
+    }));
   };
 
   const handleConversionToChange = ({ target: { name, value } }) => {
     const convertValue = name === 'value' ? value : conversionTo.value;
     const from = name === 'value' ? conversionTo.unit : value;
-    const convertedValue = convert(convertValue).from(from).to(conversionFrom.unit).toFixed(3);
+    const convertedValue = convert(convertValue).from(from).to(conversionFrom.unit);
 
     setConversionTo((prev) => ({ ...prev, [name]: value }));
-    setConversionFrom((prev) => ({ ...prev, value: convertedValue }));
+    setConversionFrom((prev) => ({
+      ...prev,
+      value: +convertedValue === 0 ? 0 : convertedValue.toFixed(3),
+    }));
   };
 
   return (

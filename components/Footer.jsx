@@ -11,7 +11,7 @@ const Footer = () => {
         <Link
           key={measure}
           href={`/convert/${measure}`}
-          className="max-w-max hover:underline underline-offset-[4px] capitalize text-gray-500 dark:text-gray-400"
+          className="max-w-max hover:underline hover:text-gray-900 dark:hover:text-gray-100 underline-offset-[4px] capitalize text-gray-500 dark:text-gray-400"
         >
           {measure} Converter
         </Link>

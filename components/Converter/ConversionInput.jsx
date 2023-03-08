@@ -6,13 +6,13 @@ const ConversionInput = ({ conversionFrom, conversionTo, onChange }) => {
   const { unitPossibilities } = useConversion();
 
   return (
-    <div>
+    <div className="relative">
       <div className="relative">
         <input
           type="text"
           name="value"
           placeholder="100"
-          className="w-full max-w-[150px] h-[44px] rounded border border-gray-300 focus:outline-none focus:ring-1 hover:ring-primary-500 focus:ring-primary-500 focus-within:ring-primary-500 pl-[10px]"
+          className="w-full h-[44px] rounded border border-gray-300 focus:outline-none focus:ring-1 hover:ring-primary-500 focus:ring-primary-500 focus-within:ring-primary-500 pl-[10px]"
           value={conversionFrom.value}
           onChange={onChange}
         />
@@ -29,7 +29,7 @@ const ConversionInput = ({ conversionFrom, conversionTo, onChange }) => {
           ))}
         </select>
       </div>
-      <span className="text-[10px] text-gray-400">
+      <span className="absolute top-full mt-1 left-0 text-[10px] text-gray-400">
         1 {conversionTo.unit} = {convert(1).from(conversionTo.unit).to(conversionFrom.unit)}{' '}
         {conversionFrom.unit}
       </span>
